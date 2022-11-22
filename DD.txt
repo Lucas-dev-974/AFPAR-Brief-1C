@@ -1,0 +1,10 @@
+CustomerID : Identifiant du client
+
+
+InvoiceNo       : Identifiant d'une facture 
+InvoiceDetailNo : Identifiant du détail d'une facture
+
+c'est quoi le détail d'une facture ? 
+    Et bien par example un client commande, produit A en 5 examplaire et produit B en 4 à X date,
+    la facture vas définir la date de commande et à cet derniere son associer le détaille de la facture,
+    donc 6 produit A avec le prix total et 4 B avecc le prix total, la facture fait le total des prix totaux à payer
