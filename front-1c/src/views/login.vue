@@ -1,6 +1,6 @@
 <template>
     <main class="full-height d-flex align-center">
-        <v-card class="mx-auto w-50" elevation="10" variant='tonal' max-width="450px">
+        <v-card color="dark" class="mx-auto w-50" elevation="10" variant='tonal' max-width="450px" min-width="350px">
             <v-card-title class="py-3"> 
                 <h3 class="d-flex justify-center letter-space py-3">Connexion</h3>    
             </v-card-title>
@@ -11,7 +11,7 @@
             </div>
 
             <v-card-actions class="d-flex justify-end">
-                <v-btn color="success" variant="outlined" @click="login">Se connecter</v-btn>
+                <v-btn color="#005db7" variant="tonal" @click="login">Se connecter</v-btn>
             </v-card-actions>
         </v-card>
     </main>
