@@ -5,14 +5,25 @@
 </template>
 
 <script>
-
+ import request from '../plugins/fetch.js'
 export default{
+
     data(){
         return{
 
         }
     },
 
+    mounted(){
+        this.checkConnexion()
+    },
 
+    methods: {
+        checkConnexion: async function(){
+            const response = await request.get('/api/auth/check')
+            if(!window.location.href.includes('login'))
+                if(!response) window.location.href = '/login'
+        }
+    }
 }
 </script>
