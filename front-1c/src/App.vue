@@ -1,6 +1,7 @@
 <template>
   <v-app>
     <v-main>
+      <Navbar />
       <Notif v-if="$store.state.notif.on" />
       <router-view/>
     </v-main>
@@ -9,12 +10,13 @@
 
 <script>
 import Notif from './components/Notif.vue'
+import Navbar from './components/navbar.vue'
 
 export default {
   name: 'App',
 
   components: {
-    Notif
+    Notif, Navbar
   },
 
   data: () => ({
