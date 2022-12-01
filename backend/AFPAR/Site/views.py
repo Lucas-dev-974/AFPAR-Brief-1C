@@ -16,10 +16,8 @@ from Site.Serializers import *
 
 class HelloView(APIView):
     permission_classes = (IsAuthenticated,)
-
     def get(self, request):
-        content = {'message': 'Hello, World!'}
-        return Response(content)
+        return JsonResponse({'status': True})
 
 
 class Authentification(APIView):
