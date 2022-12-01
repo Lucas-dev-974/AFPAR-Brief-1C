@@ -1,4 +1,7 @@
 .full-height{ height: calc(100vh - 70px); }
+.container{ width: 80%; }
+
+
 
 *, body, html {
     font-family: "Nunito";
@@ -17,4 +20,44 @@
     color: white;
     font-family: 'Nunito';
     font-size: 1.4em;
+}
+
+/* Profil card */
+#profilCard_cotainer{
+    width: 40%;
+    min-width: 450px;
+}
+
+#profil_card{
+    width: 100%;
+}
+/* Import & Feedback */
+#feedbackImport_container{
+    width: 55%;
+}
+
+#importFeedback_card{
+    width: 100%;
+}
+
+#feedback_container{
+    width: 100%;
+    margin-top: 8px;
+    background: #e4e4e4;
+    border-radius: 6px;
+    padding: 10px 8px;
+    min-height: 30px;
+}
+
+
+@media screen and (max-width: 1250px) {
+    #profilCard_cotainer{ width: 100%; }
+    #feedbackImport_container{
+        width: 100%;
+        margin-top: 20px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .container{ width: 98%; }
 }
