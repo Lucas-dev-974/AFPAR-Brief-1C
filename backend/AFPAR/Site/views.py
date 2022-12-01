@@ -5,6 +5,9 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework.decorators import *
+
+from Site.pandas_lector import *
 # Auth 
 from django.contrib.auth import authenticate, login
 
@@ -23,7 +26,8 @@ class Authentification(APIView):
     
     def post(self, request):
         login_form = LoginSerializer(data=request.data)
-
+        print(request.data)
+        
         if login_form.is_valid():
             username = request.data['username']
             password = request.data['password']
@@ -48,3 +52,16 @@ class Authentification(APIView):
                 return JsonResponse({'token': str(token.access_token), 'user': _user})
             else:
                 return JsonResponse({"errors": 'Vos identidiants sont incorrectes'}, status = 401)
+        else: 
+            return JsonResponse({'error': 'Veuillez transmetre un nom d\'utilisateur et un mot de passe !'}, status = 403)
+
+
+
+@api_view(['POST'])
+# @permission_classes([IsAuthenticated])
+def ImportCSV(request):
+    file = request.FILES.get('csv_file')
+    
+    status_import = lector(file)
+    
+    return JsonResponse({"status": status_import})
