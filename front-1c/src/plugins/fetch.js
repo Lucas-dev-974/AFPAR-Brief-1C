@@ -5,16 +5,29 @@ export default {
 
     default_options(method, params){
         let token = store.state.token ?? ''
-        const parameters = JSON.stringify(params)
+        let parameters = JSON.stringify(params)
+        let Authorization = {}
+        let head = {}
+
+        if(params instanceof FormData){
+            parameters = { body: params }
+        }else{
+            head = {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            }
+            parameters = { body: JSON.stringify(params) }
+        }
+
+        if(token && token != '') Authorization = {'Authorization':`Token ${token}`}
         
         return {
             method: method,
             headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': `Token ${token}`,
+                ...head,
+                ...Authorization,
             },
-            body: parameters,
+            ...parameters,
         }
     },
 
