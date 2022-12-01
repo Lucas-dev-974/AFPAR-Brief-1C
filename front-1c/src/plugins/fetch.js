@@ -12,7 +12,7 @@ export default {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': `bearer ${token}`,
+                'Authorization': `Token ${token}`,
             },
             body: parameters,
         }
@@ -47,6 +47,8 @@ export default {
             
             return false
         }
+
+        if(_request.status != 200) return false
 
         return json
     }
