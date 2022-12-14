@@ -1,5 +1,5 @@
 <template>
-    <v-card class="d-flex justify-space-between pa-3" color="gray" variant="tonal" id="profil_card">
+    <v-card class="d-flex justify-space-between pa-3" color="gray" variant="tonal" id="profil_card" elevation="6">
         <div id="user-informations">
             <div class="d-flex">
                 <p style="width: 140px"> Nom d'utilisateur:</p>  {{$store.state.user.username}}
