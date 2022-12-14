@@ -5,7 +5,7 @@
 </template>
 
 <script>
- import request from '../plugins/fetch.js'
+ import request from '../services/fetch.js'
 export default{
 
     data(){
@@ -22,7 +22,10 @@ export default{
         checkConnexion: async function(){
             const response = await request.get('/api/auth/check')
             if(!window.location.href.includes('login'))
-                if(!response) window.location.href = '/login'
+                if(!response){
+                    this.$store.commit('updateToken', null)
+                    window.location.href = '/login'
+                }
         }
     }
 }
