@@ -5,7 +5,6 @@
 
 *, body, html {
     font-family: "Nunito";
-    overflow-y: hidden;
 }
 /* Text classe */
 .letter-space{
