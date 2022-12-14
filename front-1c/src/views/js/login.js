@@ -1,4 +1,4 @@
-import request from '../../plugins/fetch.js'
+import request from '../../services/fetch.js'
 
 export default{
     data(){
