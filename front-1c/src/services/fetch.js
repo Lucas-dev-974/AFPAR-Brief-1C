@@ -1,4 +1,5 @@
 import store from "../store/index.js"
+const queryString = require('query-string');
 
 export default {
     host: store.state.backend_host,
@@ -13,15 +14,19 @@ export default {
             parameters = { body: params }
         }else{
             head = {
-                'Accept': 'application/json',
+                'Accept':       'application/json',
                 'Content-Type': 'application/json',
             }
-            parameters = { body: JSON.stringify(params) }
+            if(method == 'GET')
+                parameters = { query: {...params} }
+            else
+                parameters = { body: JSON.stringify(params) }
+
         }
 
         if(token && token != '') Authorization = {'Authorization':`Token ${token}`}
         
-        return {
+        return {    
             method: method,
             headers: {
                 ...head,
@@ -37,7 +42,7 @@ export default {
     },
 
     async get(uri, params){
-        const request = await window.fetch(this.host + uri, this.default_options('GET', params))
+        const request = await window.fetch(this.host + uri + this.stringifyParser(params), this.default_options('GET', params))
         return await this.getResponse(request)
     },
 
@@ -49,8 +54,8 @@ export default {
 
     async getResponse(_request){
         const json = await _request.json()
-        if(json.error || json.errors){
-            let error_message = json.error || json.errors
+        if(json.error || json.errors || _request.status == 401){
+            let error_message = json.error || json.errors || json.detail
 
             store.commit('Notif', {
                 on: true,
@@ -64,6 +69,26 @@ export default {
         if(_request.status != 200) return false
 
         return json
-    }
+    },
 
+    /**
+     * Transform Json object {regions: ["France", "United Kingdom", ...]} to url query parameters "?regions=France,United Kingdom,..."
+     * 
+     * @param json params 
+     * @returns string url parameters
+     */
+    stringifyParser:function(params){
+        let str = ''
+        
+        if(params != undefined){
+            str = '?'
+            const size = Object.keys(params).length
+
+            for(let i = 0; i < size; i++){
+                str += Object.keys(params)[i] + '='
+                str += Object.values(params)[i] + '&'
+            } 
+        }
+        return str
+    }
 }
