@@ -6,7 +6,6 @@
         </div>
 
         <div id="feedback_container">
-            d
         </div>
     </v-card>
 </template>
