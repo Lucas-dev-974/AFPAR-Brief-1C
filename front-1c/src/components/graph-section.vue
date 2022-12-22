@@ -1,10 +1,11 @@
 <template>
     <main>
+        <!-- <filterBar /> -->
         <div class="d-flex justify-space-between">
             <div>
-                <v-btn :color="on_graph == 'pays' ?     'blue' : '#005db7'" class="mx-1" size="x-small" @click='byRegions'>Ventes par pays</v-btn>      
-                <v-btn :color="on_graph == 'products' ? 'blue' : '#005db7'" class="mx-1" size="x-small" @click="byProducts">Ventes par produit</v-btn>
-                <v-btn :color="on_graph == 'regions_products' ? 'blue' : '#005db7'" class="mx-1" size="x-small" @click="byRegionsProducts">Ventes par régions des produits</v-btn>
+                <v-btn :color="on_graph == 'pays' ?     'blue' : '#005db7'" class="mx-1 my-1 text-white" size="small" @click='byRegions'>Ventes par pays</v-btn>      
+                <v-btn :color="on_graph == 'products' ? 'blue' : '#005db7'" class="mx-1 my-1 text-white" size="small" @click="byProducts">Ventes par produit</v-btn>
+                <v-btn :color="on_graph == 'regions_products' ? 'blue' : '#005db7'" class="mx-1 text-white" size="small" @click="byRegionsProducts">Ventes par régions des produits</v-btn>
             </div>
 
             <div class="d-flex w-50 align-center">
@@ -17,14 +18,20 @@
                 
         </div>
         
-        <v-card variant="tonal" color='gray' class="pa-3 w-100 mx-auto d-flex" elevation="6">
-            <div class="d-flex">
-                <canvas ref="canvas" id="chart_container"></canvas>
+        <v-card variant="tonal" color='gray' class="pa-3 w-100 mx-auto d-flex justify-between" elevation="6">
+
+            <div  :style='on_graph == "regions_products" ? "width: 70%" : "width:100%"'>
+                <canvas ref="canvas"  id="chart_container"></canvas>
+            </div>
+
+            <div class="w-30 d-flex justify-end" v-if='on_graph == "regions_products"'>
+                <canvas id="pie_chart"></canvas>
             </div>
             
-            <PieChart v-if='on_graph == "regions_products"' />
+            <!-- <PieChart v-if='on_graph == "regions_products"' /> -->
+            <barChart />
         </v-card>
     </main>
 </template>
 
-<script src="./js/graph-section.js"></script>
+<script src="./js/graph-section.js"></script> 
