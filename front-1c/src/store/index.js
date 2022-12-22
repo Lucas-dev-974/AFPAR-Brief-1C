@@ -1,5 +1,7 @@
 import { createStore } from 'vuex'
 import VuexPersist from 'vuex-persist'
+import chartStore from './chart-store.js'
+import filterStore from './filtering.js'
 
 const VuexLocalStorage = new VuexPersist({
   key:     'vuex',
@@ -19,7 +21,10 @@ export default createStore({
     },
 
     token: null,
-    user:  null
+    user:  null,
+
+    ...chartStore.state,
+    ...filterStore.state
   },
 
   mutations: {
@@ -39,6 +44,13 @@ export default createStore({
 
     setUser: function(state, user){
       state.user = user
-    }
+    },
+
+    ...chartStore.mutations,
+    ...filterStore.mutations
+  },
+
+  actions: {
+    ...filterStore.actions
   }
 })
