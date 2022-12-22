@@ -41,7 +41,7 @@ export default{
             if(!response) return false
 
             console.log(response);
-            this.renderFeedback(response.status)
+            this.renderFeedback(response)
 
         },
 
