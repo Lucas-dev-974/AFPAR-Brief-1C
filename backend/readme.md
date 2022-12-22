@@ -21,11 +21,13 @@
       - pip install djangorestframework
       - pip install markdown 
       - pip install django-filter
+      - pip install djangorestframework-simplejwt
+      - pip install django-cors-headers
 
     - Créer une base de données en local pour le projet
 
 ## Lancer le serveur 
-    Dans un terminal se placer dans le dossier du serveur aka 'AFPAR' puis lancer les commandes:
+    Dans un terminal se placer dans le dossier du serveur aka 'AFPAR' puis démarer l'environement et lancer les commandes suivantes:
     - Configurer la database dans './AFPAR/AFPAR/settings.py'
     - python manage.py migrate
     - python manage.py createsuperuser (configurer le super utilisateur)
